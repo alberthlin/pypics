@@ -2,36 +2,25 @@
 <html>
 	<head>
 		<title>PyPics</title>
-		<style type="text/css">
-		body {
-			font-family: sans-serif;
-			margin: 0;
-		}
-		.container {
-			width: 25%;
-			margin: auto;
-		}
-		.header {
-			padding: 15px;
-			text-align: center;
-			font-size: 2em;
-			background: #f2f2f2;
-			margin-bottom: 15px;
-		}
-		.header > a {
-			color: inherit;
-			text-decoration: none;
-		}
-		</style>
+		<link rel="stylesheet" type="text/css" href="/static/css/base-style.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.3/TweenMax.min.js"></script>	
 	</head>
 	<body>
 		<div class="header">
-			<a href="/">PyPics</a>
+			<a href="/">PyPics</a>	
 		</div>
 		<div class="container">
 			{% block content %}
 			{% endblock %}
 		</div>
+		<nav>
+			<a href="{% url 'new' %}">Add an image</a>	
+		</nav>
+		<div class="page-container">
+			<div class="page"></div>
+		</div>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="/static/js/animation.js"></script>
 	</body>
 </html>
 

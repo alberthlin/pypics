@@ -12,7 +12,7 @@ class PostList(ListView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['image', 'description', 'author']
+    fields = ['name', 'image', 'description', 'author']
     success_url = '/'
 
 class CommentForm(forms.Form):

@@ -1,9 +1,26 @@
-{% extends 'posts/base.html' %}
-{% block content %}
-<h1>Create new post</h1>
-<form action="{%url 'new' %}" method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Post">
-</form>
-{% endblock %}
+<!doctype html>
+<html>
+	<head>
+		<title>PyPics</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/post-form-style.css">
+	</head>
+	<body>
+		<div class="header">
+			<a href="/">PyPics</a>
+		</div>
+		<div class="container">
+			<h1>Create new post</h1>
+			<form action="{%url 'new' %}" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% for field in form %}
+				<div class="fieldWrapper">
+				    {{ field.errors }}
+				    {{ field.label_tag }} {{ field }}
+				</div>
+			    {% endfor %}
+				<input type="submit" value="Post">
+			</form>
+		</div>
+	</body>
+</html>
+
