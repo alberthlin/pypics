@@ -35,17 +35,35 @@ nav {
 	padding:1em;
 	width:fit-content;
 	display:inline-block;
+	/* display:flex; */
+	position:relative;
 }
 
-.post:hover{
+.post-container {
+	position:absolute;
+	/* background-color: rgba(255, 0, 0, 0.3); */
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	/* temporary set z-index to 1 until the animation with post-container works */
+	z-index: -1;
+}
+
+.post:hover > .post-container{
 	background-color:#98AFC7;
 	border-radius:15px;
 }
 
 /* details pop out when you hover over a picture */
-.post:hover > .details{
+.post:hover > .details {
 	display:block;
 }
+
+/* .post:hover{ */
+/* 	background-color:#98AFC7; */
+/* 	border-radius:15px; */
+/* } */
 
 /* makes so that images do not spill out of grid */
 .post > img {

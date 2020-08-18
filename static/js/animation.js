@@ -1,38 +1,47 @@
-console.clear()
-console.log("hello0");
+console.clear();
 var root = document.documentElement;
 var body = document.body;
-var posts = document.querySelectorAll(".post");
+var postContainers = document.querySelectorAll(".post");
 var page = document.querySelector(".page");
-console.log(posts.length)
+console.log(postContainers.length)
 
 // the adding of the eventlistners is clunky
-for (var i = 0; i < posts.length; i++) {  
+for (var i = 0; i < postContainers.length; i++) {  
 	console.log("loop setup");
-	console.log("post[i]: " + posts[i]);
-	addListener(posts[i]);	
+	console.log("postContainers[i]: " + postContainers[i]);
+	addListener(postContainers[i]);	
 }
 
 function addListener(card) {
 	card.addEventListener("click", function() {
-		animateCard(card);
+		console.log("clicked");
+
+		// disables default redirect
+		if(!e) var e = window.event;
+		e.cancelBubble = true;
+		e.returnValue = false;
+		if (e.stopPropagation) {
+			e.stopPropagation();
+		}
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+
+		//the first child should be post_container
+		//so the click works anywhere on post class and animation only happens for the
+		//background
+		animatePostContainer(card.children[0]);
+		animatePost(card);
 	});
 }
 
+// pushes the post z-index up for everything
+function animatePost(card) {
+	TweenLite.set(card, {zIndex:4});	
+}
 
-function animateCard(card) {	
-
-	if(!e) var e = window.event;
-	e.cancelBubble = true;
-	e.returnValue = false;
-	if (e.stopPropagation) {
-		e.stopPropagation();
-	}
-	if (e.preventDefault) {
-		e.preventDefault();
-	}
-
-	console.log(window.event);
+function animatePostContainer(card) {	
+	console.log(card);
 
 	var clone = card.cloneNode(true);
 	var from = calculatePosition(card);
@@ -40,18 +49,18 @@ function animateCard(card) {
 
 	//what is the purpose of creating a clone?
 	TweenLite.set([from, to], { visibility: "hidden" });
-	TweenLite.set(clone, { position: "absolute", margin: 0, zIndex:1});
+	TweenLite.set(clone, { position: "absolute", margin: 0, zIndex:1, backgroundColor:"#98AFC7"});
 	body.appendChild(clone);
 
 	var style = {
 		x: to.left - from.left,
 		y: to.top - from.top,
 		width: to.width,
-		height: to.height,	
+		height: to.height,
 		autoRound: false,
 		ease: Power1.easeOut,
 		onComplete: goToNextPage,
-		onCompleteParams:[window.location.href]
+		onCompleteParams:[card.getElementsByTagName('a')[0].href]
 	};
 
 	TweenLite.set(clone, from);
@@ -70,6 +79,8 @@ function goToNextPage(href){
 function calculatePosition(element) { 
 	var rect = element.getBoundingClientRect(); 
 	var scrollTop  = window.pageYOffset || root.scrollTop  || body.scrollTop  || 0;
+	//what the || does is if the left value is not truthy it will move onto the right
+	//so in this case the last resort for the value is 0
 	var scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
 	var clientTop  = root.clientTop  || body.clientTop  || 0;
 	var clientLeft = root.clientLeft || body.clientLeft || 0;

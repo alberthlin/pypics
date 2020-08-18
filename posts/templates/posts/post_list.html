@@ -1,16 +1,16 @@
 {% extends 'posts/base.html' %}
 {% block content %}	
 	{%for post in object_list %}
-	<a href="{% url 'detail' pk=post.pk %}">
 		<div class="post">
+			<div class="post-container">
+				<a href="{% url 'detail' pk=post.pk %}"></a>
+			</div>
 			<img src="{{ post.image.url }}" width=400 height=400>
 			<div class="details">
 				<h2>{{post.name}}</h2>
 				<p>{{ post.author.username }} </p><br/>
 				<p><em>{{ post.created }}</em><br/>{{post.description}}</p>
 			</div>
-			
 		</div>
-	{# </a> #}
 	{% endfor %}
 {% endblock %}
