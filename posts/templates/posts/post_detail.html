@@ -9,7 +9,7 @@
 				<a href="/">PyPics</a>
 		</div>
 		<strong>{{ object.author.username }}</strong><br/>
-		<img src="{{object.image.url}}" width=400 height=400>
+		<img src="{{object.image.url}}" width=45% height=auto>
 		<p><em>{{ object.created }}</em><br/> {{object.description }}</p>
 		<ul>
 			{%for comment in object.comment_set.all %}

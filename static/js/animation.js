@@ -26,18 +26,22 @@ function addListener(card) {
 		if (e.preventDefault) {
 			e.preventDefault();
 		}
-
-		//the first child should be post_container
-		//so the click works anywhere on post class and animation only happens for the
-		//background
-		animatePostContainer(card.children[0]);
+//the first child should be post_container //so the click works anywhere on post class and animation only happens for the //background
+		animatePostContainer(card.children[0]);	
 		animatePost(card);
+		animateImage(card.children[1]);
 	});
 }
 
 // pushes the post z-index up for everything
 function animatePost(card) {
 	TweenLite.set(card, {zIndex:4});	
+}
+
+function animateImage(card) {
+	var clone = card.cloneNode(true);
+	var from = calculatePosition(card);
+	//TODO compute the to variable
 }
 
 function animatePostContainer(card) {	
@@ -90,4 +94,12 @@ function calculatePosition(element) {
 		height: rect.height,
 		width: rect.width,
 	};
+}
+
+function getMidX( obj ){
+  return ( $(obj).parent().width()/2 ) - $(obj).width()/2;
+}
+
+function getMidY( obj ){
+  return ( $(obj).parent().height()/2 ) - $(obj).height()/2;
 }

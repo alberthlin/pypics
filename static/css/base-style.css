@@ -5,12 +5,53 @@
 
 a {
 	text-decoration:none;
+	color:#815d9d;
+}
+
+.header {	
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+	text-decoration:none;
+}
+
+#logo {
+	padding:15px 48px;
+	text-align:left;
+	font-size: 3em;
 	color:#191970;
+	text-decoration:none;
+}
+
+#add_image {
+	text-align:right;	
+	position:absolute;
+	right:0%;	
+	font-size: 12px; 
+	letter-spacing:0.2em;	
+	padding:7px 15px;
+	margin: 15px 48px;
+	color:#191970;	
+	border-style:solid;
+	border-width:2px;
+	border-color:#191970;
+	/* border-radius:5px; */
+}
+
+#add_image:hover {	
+	color:#fcb671;
+	border-color:#fcb671;
+	background-color:#ffffff;
+}
+
+.header > a {
+	color: inherit;
+	text-decoration: none;
 }
 
 body {
 	font-family: sans-serif;	
-	background-color:#FFFFFF;
+	background:rgb(2,0,36);
+	background:linear-gradient(0deg,rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(229,241,252,1) 100%);
 }
 
 nav {
@@ -26,7 +67,6 @@ nav {
 	grid-template-columns:repeat(4, 1fr);
 	grid-gap:15px;
 }
-
 .details {
 	display:none;
 }
@@ -37,11 +77,11 @@ nav {
 	display:inline-block;
 	/* display:flex; */
 	position:relative;
+	cursor:pointer;	
 }
 
 .post-container {
-	position:absolute;
-	/* background-color: rgba(255, 0, 0, 0.3); */
+	position:absolute;	
 	top:0;
 	left:0;
 	width:100%;
@@ -51,38 +91,15 @@ nav {
 }
 
 .post:hover > .post-container{
-	background-color:#98AFC7;
-	border-radius:15px;
+	background-color:#124466;	
+	border-radius:15px;	
 }
 
-/* details pop out when you hover over a picture */
-.post:hover > .details {
-	display:block;
-}
-
-/* .post:hover{ */
-/* 	background-color:#98AFC7; */
-/* 	border-radius:15px; */
-/* } */
-
-/* makes so that images do not spill out of grid */
 .post > img {
 	object-fit: cover;	
 	width: 100%;
-	max-height: 100%;	
-}
-
-.header {
-	/* display:none; */
-	padding: 15px; 
-	text-align: center;
-	font-size: 10em;
-	color:#191970;
-}
-
-.header > a {
-	color: inherit;
-	text-decoration: none;
+	max-height: 100%;
+	border-radius:15px;
 }
 
 .page_container {
@@ -90,7 +107,7 @@ nav {
 }
 
 .page {
-	cursor:pointer;
+	/* cursor:pointer; */
 	position:absolute;
 	height:100vh;
 	width:100vw;
